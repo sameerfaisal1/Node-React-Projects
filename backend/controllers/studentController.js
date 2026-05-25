@@ -1,35 +1,71 @@
-// with repository
-
 const StudentService = require("../repository/services/StudentService");
 
-const studentController = {
-  getAllStudents: async (req, res) => {
-    const result = await StudentService.getAll();
-    res.status(result.isSuccess ? 200 : 500).json(result);
-  },
-
-  getStudentById: async (req, res) => {
-    const result = await StudentService.getById(req.params.id);
-    res.status(result.isSuccess ? 200 : 404).json(result);
-  },
-
-  createStudent: async (req, res) => {
-    const result = await StudentService.create(req.body);
-    res.status(result.isSuccess ? 201 : 400).json(result);
-  },
-
-  updateStudent: async (req, res) => {
-    const result = await StudentService.update(req.params.id, req.body);
-    res.status(result.isSuccess ? 200 : 404).json(result);
-  },
-
-  deleteStudent: async (req, res) => {
-    const result = await StudentService.delete(req.params.id);
-    res.status(result.isSuccess ? 200 : 404).json(result);
-  },
+// each function is separate
+const getAllStudents = async (req, res) => {
+  const result = await StudentService.getAll();
+  res.status(result.isSuccess ? 200 : 500).json(result);
 };
 
-module.exports = studentController;
+const getStudentById = async (req, res) => {
+  const result = await StudentService.getById(req.params.id);
+  res.status(result.isSuccess ? 200 : 404).json(result);
+};
+
+const createStudent = async (req, res) => {
+  const result = await StudentService.create(req.body);
+  res.status(result.isSuccess ? 201 : 400).json(result);
+};
+
+const updateStudent = async (req, res) => {
+  const result = await StudentService.update(req.params.id, req.body);
+  res.status(result.isSuccess ? 200 : 404).json(result);
+};
+
+const deleteStudent = async (req, res) => {
+  const result = await StudentService.delete(req.params.id);
+  res.status(result.isSuccess ? 200 : 404).json(result);
+};
+
+// export all separately
+module.exports = {
+  getAllStudents,
+  getStudentById,
+  createStudent,
+  updateStudent,
+  deleteStudent,
+};
+// with repository
+
+// const StudentService = require("../repository/services/StudentService");
+
+// const studentController = {
+//   getAllStudents: async (req, res) => {
+//     const result = await StudentService.getAll();
+//     res.status(result.isSuccess ? 200 : 500).json(result);
+//   },
+
+//   getStudentById: async (req, res) => {
+//     const result = await StudentService.getById(req.params.id);
+//     res.status(result.isSuccess ? 200 : 404).json(result);
+//   },
+
+//   createStudent: async (req, res) => {
+//     const result = await StudentService.create(req.body);
+//     res.status(result.isSuccess ? 201 : 400).json(result);
+//   },
+
+//   updateStudent: async (req, res) => {
+//     const result = await StudentService.update(req.params.id, req.body);
+//     res.status(result.isSuccess ? 200 : 404).json(result);
+//   },
+
+//   deleteStudent: async (req, res) => {
+//     const result = await StudentService.delete(req.params.id);
+//     res.status(result.isSuccess ? 200 : 404).json(result);
+//   },
+// };
+
+// module.exports = studentController;
 //old code without repository method
 // const Student = require("../models/Student");
 
